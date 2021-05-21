@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JobSearch.Domain.Models
 {
+
+    //Linha adicionada para teste do GIT com autenticação token
     public class Job
     {
         [Key]
