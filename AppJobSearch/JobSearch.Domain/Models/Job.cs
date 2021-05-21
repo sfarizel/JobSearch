@@ -7,6 +7,13 @@ namespace JobSearch.Domain.Models
     //Linha adicionada para teste do GIT com autenticação token
     //Continuando nos testes
     //Mais um teste de commit pra ver
+    //Outro teste vamos ver se vai o git com token
+
+
+
+
+
+    //testamdo 12 3 
 
 
     public class Job
