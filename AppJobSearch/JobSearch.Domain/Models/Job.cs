@@ -5,6 +5,7 @@ namespace JobSearch.Domain.Models
 {
 
     //Linha adicionada para teste do GIT com autenticação token
+    //Continuando nos testes
     public class Job
     {
         [Key]
