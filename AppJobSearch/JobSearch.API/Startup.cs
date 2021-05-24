@@ -29,14 +29,21 @@ namespace JobSearch.API
         {
             services.AddDbContext<JobSearchContext>(options =>
             {
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlite("Data Source=C:\\inetpub\\wwwroot\\jobsearchapi\\Database\\JobSearch.db");
             });
             services.AddControllers();
+            
+            services.Configure<IISOptions>(o =>
+            {
+                o.ForwardClientCertificate = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
