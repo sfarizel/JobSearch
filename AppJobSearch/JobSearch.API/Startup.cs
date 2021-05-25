@@ -29,8 +29,8 @@ namespace JobSearch.API
         {
             services.AddDbContext<JobSearchContext>(options =>
             {
-                //options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
-                options.UseSqlite("Data Source=C:\\inetpub\\wwwroot\\jobsearchapi\\Database\\JobSearch.db");
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                //options.UseSqlite("Data Source=C:\\inetpub\\wwwroot\\jobsearchapi\\Database\\JobSearch.db");
             });
             services.AddControllers();
             
