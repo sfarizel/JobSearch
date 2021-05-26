@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JobSearch.App.Views.Visualizer">
+    <ContentPage.Content>
+        <StackLayout Spacing="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <ImageButton Source="back.png" Clicked="GoBack" Style="{StaticResource BackButton}"/>
+                <Label Text="Jobsearch (By Sandro)" Style="{StaticResource Title}" Grid.Column="1"/>
+            </Grid>
+            <BoxView Color="#D7CCFF" HeightRequest="1" />
+            <ScrollView>
+                <StackLayout>
+                    <Grid RowSpacing="0" Margin="0, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Digital Ocean" Grid.Row="0" Style="{StaticResource TitlePrimary}"/>
+                        <Label Text="Back-End Developer" Grid.Row="1" Style="{StaticResource TextPrimary}"/>
+                        <Label Text="São Paulo, SP" Grid.Row="2" Style="{StaticResource TitlePrimary}" />
+                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="7.0-11k" Style="{StaticResource MoneyLabel}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="BRL" Style="{StaticResource CurrencyLabel }"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label Text="CLT" Grid.Row="4" Style="{StaticResource TitlePrimary}"/>
+                        <Label Text="Tags" Grid.Row="5"/>
+
+                        <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource TextSecondary}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Pub." />
+                                    <Span Text=" "/>
+                                    <Span Text="02/02/2020"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource IdLabel}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Id." />
+                                    <Span Text=" "/>
+                                    <Span Text="124651" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <Label Style="{StaticResource TextPrimary}" Text="Interessados enviar email para:"/>
+                    <Label Text="sfarizel@bol.com.br"/>
+                    <BoxView Color="#F3F5F7" HeightRequest="1"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Descrição da empresa"/>
+                    <Label Style="{StaticResource MoneyLabel}" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non molestie quam. Fusce sed dolor a nisi euismod euismod nec consectetur urna. Pellentesque sollicitudin iaculis justo, vel faucibus nibh. Fusce id dignissim ipsum. Vestibulum in libero eu risus sollicitudin blandit non a augue. Duis hendrerit enim nisl, a volutpat sapien laoreet et. Duis mollis tristique tellus, in laoreet lacus. Sed tristique vitae nulla et luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus imperdiet, nunc eu convallis sollicitudin, nunc justo malesuada ante, sit amet suscipit lacus turpis sed purus.
+Fusce facilisis arcu nunc, non commodo arcu congue sed. Donec auctor vehicula augue, ac tristique lectus pulvinar nec. Nunc venenatis congue vehicula. Vestibulum sit amet felis ut mi varius posuere. Nunc gravida ut tellus eget fermentum. Fusce magna enim, laoreet ac odio et, ultrices volutpat lorem. Aenean id dui nec metus suscipit venenatis. Vestibulum molestie justo mauris. Nunc in fermentum lorem. Vivamus feugiat ipsum in purus tristique, eget tincidunt ex pellentesque. Curabitur sit amet convallis dui, ac facilisis diam. Suspendisse ex elit, dignissim id libero eu, mollis euismod tortor.
+Quisque cursus dui turpis, at dignissim urna finibus non. Mauris volutpat turpis malesuada, finibus tortor vel, porta urna. Praesent aliquam, ex quis ultrices egestas, purus tortor hendrerit justo, eu egestas dui odio a dui. In in nisl elementum, malesuada massa eu, accumsan eros. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent ut porta lectus, sed semper risus. Ut risus mauris, interdum vel elit sit amet, dignissim elementum nisl. Vivamus semper venenatis venenatis. Aliquam elementum pharetra nisl, cursus faucibus est efficitur et. Aliquam vestibulum dui sed nibh placerat venenatis. Nulla molestie accumsan ligula ut convallis. Proin pretium non turpis a pellentesque. Aliquam feugiat malesuada urna eu lacinia. Maecenas dictum volutpat massa ut mollis. Pellentesque ultricies, lorem id congue feugiat, eros purus maximus tellus, ut ornare erat urna et neque."/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Descrição do trabalho"/>
+                    <Label Style="{StaticResource MoneyLabel}" Text="ewewewewewewewewewewewewewe"/>
+                    <Label Style="{StaticResource TextPrimary}" Text="Beneficios"/>
+                    <Label Style="{StaticResource MoneyLabel}" Text="benebenebenebene benebenebenebene"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

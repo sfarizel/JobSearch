@@ -4,9 +4,39 @@
              x:Class="JobSearch.App.Views.Register">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Clicked="Button_Clicked"   Text="&#60;" WidthRequest="20"/>
+                <Label Text="Jobsearch (By Sandro)" Style="{StaticResource Title}" Grid.Column="1"/>
+            </Grid>
+            <BoxView Color="#D7CCFF" HeightRequest="1" />
+
+            <Grid VerticalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Frame StyleClass="EntryFrame" Grid.Row="0" Grid.ColumnSpan="2" >
+                    <Entry x:Name="TxtEmail" Placeholder="E-mail" ReturnType="Next" />
+                </Frame>
+                <Frame StyleClass="EntryFrame" Grid.Row="1" Grid.ColumnSpan="2" >
+                    <Entry x:Name="TxtNome" Placeholder="Nome" ReturnType="Next" />
+                </Frame>                
+                <Frame StyleClass="EntryFrame" Grid.Row="2" Grid.ColumnSpan="2">
+                    <Entry IsPassword="True" x:Name="TxtPassword" ReturnType="Done" Placeholder="Senha" />
+                </Frame>
+                <Button Text="Salvar" Grid.Row="3" />
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
