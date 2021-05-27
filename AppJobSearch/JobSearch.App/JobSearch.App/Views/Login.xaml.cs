@@ -1,6 +1,5 @@
 ﻿using JobSearch.App.Models;
 using JobSearch.App.Services;
-using JobSearch.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Extensions;
 using JobSearch.App.Utility.Load;
+using JobSearch.APP.Domain.Models;
 
 namespace JobSearch.App.Views
 {

@@ -135,6 +135,12 @@
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
+  <data name="FinalSalary" xml:space="preserve">
+    <value>Salário Final</value>
+  </data>
+  <data name="InitialSalary" xml:space="preserve">
+    <value>Salário Inicial</value>
+  </data>
   <data name="InterestedSendEmailTo" xml:space="preserve">
     <value>E-Mails dos Interessados</value>
   </data>
@@ -152,9 +158,6 @@
   </data>
   <data name="PublicationDate" xml:space="preserve">
     <value>Data de Publicação</value>
-  </data>
-  <data name="Salary" xml:space="preserve">
-    <value>Salário</value>
   </data>
   <data name="TecnologyTools" xml:space="preserve">
     <value>Tecnologias e Ferramentas</value>

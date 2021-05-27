@@ -3,14 +3,16 @@ using System;
 using JobSearch.API.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobSearch.API.Migrations
 {
     [DbContext(typeof(JobSearchContext))]
-    partial class JobSearchContextModelSnapshot : ModelSnapshot
+    [Migration("20210527203648_SeparacaoDosSalarios")]
+    partial class SeparacaoDosSalarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JobSearch.Domain.Models
+namespace JobSearch.APP.Domain.Models
 {
     public class User
     {

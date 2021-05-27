@@ -1,4 +1,6 @@
 ﻿using JobSearch.Domain.Models;
+using JobSearch.Web.Models;
+using JobSearch.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,16 +13,19 @@ namespace JobSearch.Web.Controllers
 {
     public class UsersController : Controller
     {
+        private UserService _service;
+
         public async Task<IActionResult> Index()
         {
-            IEnumerable<User> usersList;
-            using (var httpClient = new HttpClient())
+            _service = new UserService();
+
+            List<User> usersList = null;
+
+            ResponseService<List<User>> responseService = await _service.GetUsers();
+
+            if (responseService.IsSucess)
             {
-                using (var response = await httpClient.GetAsync("https://localhost:44384/api/Users/"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    usersList = JsonConvert.DeserializeObject<IEnumerable<User>>(apiResponse);
-                }
+                usersList = responseService.Data.ToList();
             }
             return View(usersList);
         }

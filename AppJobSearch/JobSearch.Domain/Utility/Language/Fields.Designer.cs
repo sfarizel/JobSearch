@@ -115,6 +115,24 @@ namespace JobSearch.Domain.Utility.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salário Final.
+        /// </summary>
+        public static string FinalSalary {
+            get {
+                return ResourceManager.GetString("FinalSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salário Inicial.
+        /// </summary>
+        public static string InitialSalary {
+            get {
+                return ResourceManager.GetString("InitialSalary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-Mails dos Interessados.
         /// </summary>
         public static string InterestedSendEmailTo {
@@ -165,15 +183,6 @@ namespace JobSearch.Domain.Utility.Language {
         public static string PublicationDate {
             get {
                 return ResourceManager.GetString("PublicationDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Salário.
-        /// </summary>
-        public static string Salary {
-            get {
-                return ResourceManager.GetString("Salary", resourceCulture);
             }
         }
         
