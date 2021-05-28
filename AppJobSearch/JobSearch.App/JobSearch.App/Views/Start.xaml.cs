@@ -1,4 +1,8 @@
-﻿using System;
+﻿using JobSearch.App.Models;
+using JobSearch.App.Services;
+using JobSearch.APP.Domain.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +16,11 @@ namespace JobSearch.App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Start : ContentPage
     {
+        private JobService _service;
         public Start()
         {
             InitializeComponent();
+            _service = new JobService();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -41,7 +47,25 @@ namespace JobSearch.App.Views
         {
             App.Current.Properties.Remove("User");
             App.Current.SavePropertiesAsync();
-            App.Current.MainPage = new Login(); 
+            App.Current.MainPage = new Login();
         }
+
+        private async void Search(object sender, EventArgs e)
+        {
+            string word = TextoPesquisa.Text;
+            string cityState = TextoCidade.Text;
+
+            ResponseService<List<Job>> responseService = await _service.GetJobs(word, cityState);
+
+            if (responseService.IsSucess)
+            {
+                //Colocar dentro da collection 
+                ListOfJobs.ItemsSource = responseService.Data;
+            }
+            else
+            {
+                await DisplayAlert("Erro!", "Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
+            }
+         }
     }
 }

@@ -9,34 +9,54 @@ namespace JobSearch.App.Services
 {
     public class JobService : Service
     {
-        public async Task<IEnumerable<Job>> GetJobs(string word, string cityState, int numberOfPage = 1)
+        public async Task<ResponseService<List<Job>>> GetJobs(string word, string cityState, int numberOfPage = 1)
         {
-            List<Job> list = null;
 
-          HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/Jobs?word={word}&cityState={cityState}&numberOfPage={numberOfPage}");
+            HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/Jobs?word={word}&cityState={cityState}&numberOfPage={numberOfPage}");
+            ResponseService<List<Job>> responseService = new ResponseService<List<Job>>();
+            responseService.IsSucess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode; //se usar ToString retorna a mensagem
+
             if (response.IsSuccessStatusCode)
             {
-                list = await response.Content.ReadAsAsync<List<Job>>();
+                //Ler a string do conteúdo retornado e deserializar 
+                responseService.Data = await response.Content.ReadAsAsync<List<Job>>();
             }
-            return list;
+            else
+            {
+                string erroResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<List<User>>>(erroResponse);
+                responseService.Errors = erros.Errors;
+            }
+            return responseService;
         }
 
-        public async Task<Job> GetJob(int id)
+        public async Task<ResponseService<Job>> GetJob(int id)
         {
-            Job job  = null;
-
             HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/Jobs/{id}");
+            ResponseService<Job> responseService = new ResponseService<Job>();
+            responseService.IsSucess = response.IsSuccessStatusCode;
+            responseService.StatusCode = (int)response.StatusCode; //se usar ToString retorna a mensagem
+
             if (response.IsSuccessStatusCode)
             {
-                job = await response.Content.ReadAsAsync<Job>();
+                //Ler a string do conteúdo retornado e deserializar 
+                responseService.Data = await response.Content.ReadAsAsync<Job>();
+
             }
-            return job;
+            else
+            {
+                string erroResponse = await response.Content.ReadAsStringAsync();
+                var erros = JsonConvert.DeserializeObject<ResponseService<User>>(erroResponse);
+                responseService.Errors = erros.Errors;
+            }
+            return responseService;
         }
 
         public async Task<ResponseService<Job>> AddJob(Job job)
         {
-            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/Jobs",job);
-     
+            HttpResponseMessage response = await _client.PostAsJsonAsync($"{BaseApiUrl}/api/Jobs", job);
+
             ResponseService<Job> responseService = new ResponseService<Job>();
             responseService.IsSucess = response.IsSuccessStatusCode;
             responseService.StatusCode = (int)response.StatusCode; //se usar ToString retorna a mensagem
