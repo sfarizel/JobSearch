@@ -4,6 +4,7 @@ using JobSearch.APP.Domain.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace JobSearch.App.Views
     public partial class Start : ContentPage
     {
         private JobService _service;
+        private ObservableCollection<Job> _listOfJobs;
+        private SearchParams _searchParams;
         public Start()
         {
             InitializeComponent();
@@ -52,20 +55,60 @@ namespace JobSearch.App.Views
 
         private async void Search(object sender, EventArgs e)
         {
+            Loading.IsVisible = true;
+            Loading.IsRunning = true;
+            LblResult.Text = "Aguarde...";
+
             string word = TextoPesquisa.Text;
             string cityState = TextoCidade.Text;
 
-            ResponseService<List<Job>> responseService = await _service.GetJobs(word, cityState);
+            _searchParams = new SearchParams { Word = word, CityState = cityState, PageNumber = 1 };
+
+            ResponseService<List<Job>> responseService = await _service.GetJobs(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
 
             if (responseService.IsSucess)
             {
                 //Colocar dentro da collection 
-                ListOfJobs.ItemsSource = responseService.Data;
+                _listOfJobs = new ObservableCollection<Job>(responseService.Data);
+                ListOfJobs.ItemsSource = _listOfJobs;
+                ListOfJobs.RemainingItemsThreshold = 1;
             }
             else
             {
                 await DisplayAlert("Erro!", "Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
             }
-         }
+
+            LblResult.Text = "Nenhum Resultado";
+            Loading.IsVisible = false;
+            Loading.IsRunning = false;
+        }
+
+        private async void InfinitySearch(object sender, EventArgs e)
+        {
+            _searchParams.PageNumber++;
+
+            Loading.IsVisible = true;
+            Loading.IsRunning = true;
+
+            ResponseService<List<Job>> responseService = await _service.GetJobs(_searchParams.Word, _searchParams.CityState, _searchParams.PageNumber);
+
+            if (responseService.IsSucess)
+            {
+
+                var listOfJobsFromService = new ObservableCollection<Job>(responseService.Data);
+
+                foreach (var item in listOfJobsFromService)
+                {
+                    _listOfJobs.Add(item);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Erro!", "Ocorreu um erro inesperado, tente novamente mais tarde.", "OK");
+            }
+
+            Loading.IsVisible = false;
+            Loading.IsRunning = false;
+        }
     }
 }

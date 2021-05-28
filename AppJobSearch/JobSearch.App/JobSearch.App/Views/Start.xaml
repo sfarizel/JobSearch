@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:control="clr-namespace:JobSearch.App.Utility.Controls"
              mc:Ignorable="d"
                 x:Class="JobSearch.App.Views.Start">
     <ContentPage.Content>
@@ -61,46 +62,58 @@
                 </Label.FormattedText>
             </Label>
             <!--Jobs -->
-            <CollectionView x:Name="ListOfJobs"  >
-                <CollectionView.EmptyView>
-                    <Label Text="Nenhum resultado" Style="{StaticResource TextPrimary}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
-                </CollectionView.EmptyView>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" HasShadow="True">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                            </Frame.GestureRecognizers>
-                            <Grid RowSpacing="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding Company}" Grid.ColumnSpan="2" Style="{StaticResource TitlePrimary}"/>
-                                <Label Text="{Binding JobTitle}" Grid.Row="1" Style="{StaticResource TextPrimary}"/>
-                                <Label Text="{Binding CityState}" Grid.Row="2" Style="{StaticResource TitlePrimary}" />
-                                <Label Text="Tags" Grid.Row="3" Style="{StaticResource TextSecondary}" />
-                                <Label Grid.Row="1" Grid.Column="1">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="7.0-11k" Style="{StaticResource MoneyLabel}"/>
-                                            <Span Text=" "/>
-                                            <Span Text="BRL" Style="{StaticResource CurrencyLabel }"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Text="id. 23145" Grid.Row="3" Grid.Column="1" Style="{StaticResource IdLabel}"/>
-                            </Grid>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Grid>
+                <CollectionView x:Name="ListOfJobs" RemainingItemsThreshold="-1" RemainingItemsThresholdReached="InfinitySearch" >
+                    <CollectionView.EmptyView>
+                        <Label x:Name="LblResult" Text="Pronto para Pesquisar" Style="{StaticResource TextPrimary}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="{StaticResource GrayBlue}" Padding="15" Margin="4" HasShadow="True">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Frame.GestureRecognizers>
+                                <Grid RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Label Text="{Binding Company}" Grid.ColumnSpan="2" Style="{StaticResource TitlePrimary}"/>
+                                    <Label Text="{Binding JobTitle}" Grid.Row="1" Style="{StaticResource TextPrimary}"/>
+                                    <Label Text="{Binding CityState}" Grid.Row="2" Style="{StaticResource TitlePrimary}" />
+                                    <control:TagView Tecnologies="{Binding TecnologyTools}" Grid.Row="3" Grid.ColumnSpan="2" NumberOfWords="2"/>
+                                    <Label Grid.Row="1" Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding InitialSalary}" Style="{StaticResource MoneyLabel}"/>
+                                                <Span Text="-"/>
+                                                <Span Text="{Binding FinalSalary}" Style="{StaticResource MoneyLabel}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="BRL" Style="{StaticResource CurrencyLabel }"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Row="2" Style="{StaticResource IdLabel}" Grid.Column="1">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Id."  />
+                                                <Span Text="{Binding Id}"  />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator x:Name="Loading" IsRunning="False" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
