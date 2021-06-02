@@ -26,9 +26,12 @@ namespace JobSearch.App.Views
             _service = new JobService();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void GoVisualizer(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Visualizer());
+            var eventArgs = (TappedEventArgs)e;
+            var page = new Visualizer();
+            page.BindingContext = eventArgs.Parameter; 
+            Navigation.PushAsync(page);
         }
 
         private void GoRegisterJob(object sender, EventArgs e)
@@ -55,6 +58,8 @@ namespace JobSearch.App.Views
 
         private async void Search(object sender, EventArgs e)
         {
+            LblTotalItemsCount.Text = string.Empty;
+
             Loading.IsVisible = true;
             Loading.IsRunning = true;
             LblResult.Text = "Aguarde...";
@@ -72,6 +77,8 @@ namespace JobSearch.App.Views
                 _listOfJobs = new ObservableCollection<Job>(responseService.Data);
                 ListOfJobs.ItemsSource = _listOfJobs;
                 ListOfJobs.RemainingItemsThreshold = 1;
+
+                LblTotalItemsCount.Text = $"{responseService.Pagination.TotalItems} resultado(s) pesquisados";
             }
             else
             {

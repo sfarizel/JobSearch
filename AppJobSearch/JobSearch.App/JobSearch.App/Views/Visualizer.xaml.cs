@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobSearch.APP.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,17 @@ namespace JobSearch.App.Views
         private void GoBack(object sender, EventArgs e)
         {
             Navigation.PopAsync();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Job job = ((Job)BindingContext);
+            if (string.IsNullOrEmpty(job.CompanyDescription)) 
+            {
+                LblCompanyDescription.IsVisible = false;
+                TxtCompanyDescription.IsVisible = false;
+            }
         }
 
     }

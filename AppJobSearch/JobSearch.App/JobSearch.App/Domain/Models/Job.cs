@@ -70,6 +70,7 @@ namespace JobSearch.APP.Domain.Models
         public string InterestedSendEmailTo { get; set; }
 
         [Display(Name = "PublicationDate", ResourceType = typeof(JobSearch.Domain.Utility.Language.Fields))]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime PublicationDate { get; set; }
 
         public int UserId { get; set; }

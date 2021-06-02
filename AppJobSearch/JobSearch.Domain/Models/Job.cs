@@ -39,10 +39,12 @@ namespace JobSearch.Domain.Models
         public string CityState { get; set; }
 
         [Display(Name = "InitialSalary", ResourceType = typeof(JobSearch.Domain.Utility.Language.Fields))]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         [Required(ErrorMessageResourceType = typeof(JobSearch.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public double InitialSalary { get; set; }
 
         [Display(Name = "FinalSalary", ResourceType = typeof(JobSearch.Domain.Utility.Language.Fields))]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         [Required(ErrorMessageResourceType = typeof(JobSearch.Domain.Utility.Language.Messages), ErrorMessageResourceName = "MSG_E001")]
         public double FinalSalary { get; set; }
 
@@ -70,6 +72,7 @@ namespace JobSearch.Domain.Models
         public string InterestedSendEmailTo { get; set; }
 
         [Display(Name = "PublicationDate", ResourceType = typeof(JobSearch.Domain.Utility.Language.Fields))]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime PublicationDate { get; set; }
 
         public int UserId { get; set; }

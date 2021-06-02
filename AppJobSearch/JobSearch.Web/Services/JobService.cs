@@ -1,16 +1,16 @@
-﻿using JobSearch.App.Models;
-using JobSearch.APP.Domain.Models;
+﻿using JobSearch.Domain.Models;
+using JobSearch.Web.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace JobSearch.App.Services
+namespace JobSearch.Web.Services
 {
     public class JobService : Service
     {
-        public async Task<ResponseService<List<Job>>> GetJobs(string word, string cityState, int numberOfPage = 1)
+        public async Task<ResponseService<List<Job>>> GetJobs(string word = "", string cityState = "", int numberOfPage = 1)
         {
 
             HttpResponseMessage response = await _client.GetAsync($"{BaseApiUrl}/api/Jobs?word={word}&cityState={cityState}&numberOfPage={numberOfPage}");

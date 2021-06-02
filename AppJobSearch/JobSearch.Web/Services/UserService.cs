@@ -29,7 +29,7 @@ namespace JobSearch.Web.Services
             {
                 string erroResponse = await response.Content.ReadAsStringAsync();
                 var erros = JsonConvert.DeserializeObject<ResponseService<User>>(erroResponse);
-                responseService.Erros = erros.Erros;
+                responseService.Errors = erros.Errors;
             }
             return responseService;
         }
@@ -53,7 +53,7 @@ namespace JobSearch.Web.Services
             {
                 string erroResponse = await response.Content.ReadAsStringAsync();
                 var erros = JsonConvert.DeserializeObject<ResponseService<User>>(erroResponse);
-                responseService.Erros = erros.Erros ;
+                responseService.Errors = erros.Errors ;
             }
             return responseService;
         }
