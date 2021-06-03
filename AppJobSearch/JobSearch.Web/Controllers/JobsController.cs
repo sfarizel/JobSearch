@@ -23,9 +23,39 @@ namespace JobSearch.Web.Controllers
             if (responseService.IsSucess)
             {
                 jobsList = responseService.Data.ToList();
-                ViewData["TotalRecords"] = responseService.Pagination.TotalItems.ToString("N0"); ;
+                ViewData["TotalRecords"] = responseService.Pagination.TotalItems.ToString("N0");
             }
+
             return View(jobsList);
+        }
+        public async Task<IActionResult> SearchJobs(string? word, string? cityState)
+        {
+            _service = new JobService();
+            List<Job> jobsList = null;
+
+            if (word == null)
+            {
+                word = "";
+            }
+
+            if (cityState == null)
+            {
+                cityState = "";
+            }
+
+            ViewData["word"] = word.ToString();
+            ViewData["cityState"] = cityState.ToString();
+            ViewData["TotalRecords"] = "0";
+
+            ResponseService<List<Job>> responseService = await _service.GetJobs(word, cityState);
+            if (responseService.IsSucess)
+            {
+                jobsList = responseService.Data.ToList();
+                ViewData["TotalRecords"] = responseService.Pagination.TotalItems.ToString("N0");
+            }
+
+            return View(jobsList);
+
         }
     }
 }

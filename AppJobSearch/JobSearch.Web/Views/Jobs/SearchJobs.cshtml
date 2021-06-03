@@ -15,15 +15,15 @@
             <fieldset>
                 <legend>Pesquisar</legend>
                 <div class="form-group">
-                    <label for="word" class="col-lg-2 control-label">Palavra Chave</label>
+                    <label for="word" class="col-lg-3 control-label">Palavra Chave</label>
                     <div class="col-lg-10">
-                        <input type="text" name="word" class="form-control" />
+                        <input type="text" name="word" class="form-control" value="@ViewData["word"]" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="cityState" class="col-lg-2 control-label">Cidade/Estado</label>
+                    <label for="cityState" class="col-lg-3 control-label">Cidade/Estado</label>
                     <div class="col-lg-10">
-                        <input type="text" name="cityState" class="form-control" />
+                        <input type="text" name="cityState" class="form-control" value="@ViewData["cityState"]" />
                     </div>
                 </div>
                 <div class="form-group">

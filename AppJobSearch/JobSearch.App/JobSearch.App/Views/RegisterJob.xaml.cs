@@ -32,7 +32,7 @@ namespace JobSearch.App.Views
         {
             LblMsg.Text = string.Empty;
 
-            //Coleta o usuário registrado no celular via properties do aplicatvo
+            //Busca o usuário do dispositivo
             User user = JsonConvert.DeserializeObject<User>(App.Current.Properties["User"].ToString());
 
             string company = TxtCompany.Text;
@@ -72,10 +72,6 @@ namespace JobSearch.App.Views
 
             if (responseService.IsSucess)
             {
-                //Armazenda internamente no aplicativo (persiste quando sair e voltar ao aplicativo)
-                App.Current.Properties.Add("Job", JsonConvert.SerializeObject(responseService.Data));
-                await App.Current.SavePropertiesAsync();
-
                 //Troca a navigation page pela start
                 App.Current.MainPage = new NavigationPage(new Start());
             }
